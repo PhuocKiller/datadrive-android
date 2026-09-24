@@ -1652,4 +1652,6 @@
     <string name="bad_oc_version">No valid DataDrive server version was found</string>
     <string name="instance_not_configured">The DataDrive server is not configured!</string>
     <string name="notification_channel_name">DataDrive connection</string>
+    <string name="prefs_open_source_licenses">Open source licenses</string>
+    <string name="prefs_based_on_nextcloud">Based on Nextcloud Android (GPLv2). Tap to view the source code.</string>
 </resources>

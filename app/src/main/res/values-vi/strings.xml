@@ -1387,4 +1387,6 @@
     <string name="bad_oc_version">Không tìm thấy phiên bản máy chủ DataDrive hợp lệ</string>
     <string name="instance_not_configured">Máy chủ DataDrive chưa được cấu hình!</string>
     <string name="notification_channel_name">Kết nối tới DataDrive</string>
+    <string name="prefs_open_source_licenses">Giấy phép mã nguồn mở</string>
+    <string name="prefs_based_on_nextcloud">Dựa trên Nextcloud Android (GPLv2). Nhấn để xem mã nguồn.</string>
 </resources>

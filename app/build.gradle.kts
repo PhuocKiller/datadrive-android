@@ -552,3 +552,13 @@ dependencies {
     // kotlinx.serialization
     implementation(libs.kotlinx.serialization.json)
 }
+
+// DataDrive: name the APK DataDrive-<version>.apk
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val name = output.versionName.map { "DataDrive-${it.replace(' ', '-')}.apk" }
+            (output as? com.android.build.api.variant.impl.VariantOutputImpl)?.outputFileName?.set(name)
+        }
+    }
+}
