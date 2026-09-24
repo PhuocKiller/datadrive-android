@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ DataDrive - Android Client
+  ~
+  ~ DataDrive brand artwork (see branding/)
+  ~ SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+<group android:pivotX="54" android:pivotY="54" android:scaleX="0.58" android:scaleY="0.58">
+<group android:translateX="5.5" android:translateY="4">
+<path android:pathData="M 16.5 32 H 42 A 18 18 0 0 1 42 68 H 16.5 Z" android:strokeColor="#FF000000" android:strokeWidth="11" android:strokeLineJoin="round" android:strokeLineCap="round"/>
+<path android:pathData="M 15 10 H 42 A 40 40 0 0 1 42 90 H 15 Z" android:strokeColor="#FF000000" android:strokeWidth="14" android:strokeLineJoin="round" android:strokeLineCap="round"/>
+<path android:pathData="M 26.1,50 a 3.4,3.4 0 1,0 6.8,0 a 3.4,3.4 0 1,0 -6.8,0 Z" android:fillColor="#FF000000" android:fillAlpha="0.55"/>
+<path android:pathData="M 35.1,50 a 3.4,3.4 0 1,0 6.8,0 a 3.4,3.4 0 1,0 -6.8,0 Z" android:fillColor="#FF000000" android:fillAlpha="0.8"/>
+<path android:pathData="M 44.1,50 a 3.4,3.4 0 1,0 6.8,0 a 3.4,3.4 0 1,0 -6.8,0 Z" android:fillColor="#FF000000" android:fillAlpha="1"/>
+</group>
+</group>
+</vector>
