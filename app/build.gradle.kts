@@ -112,7 +112,7 @@ android {
             "TEST_SERVER_PASSWORD" to ncTestServerPassword.toString(),
             "disableAnalytics" to "true"
         )
-        applicationId = "com.nextcloud.client"
+        applicationId = "vn.datadrive.client"
         minSdk = 28
         targetSdk = 36
         compileSdk = 37
@@ -155,29 +155,29 @@ android {
         productFlavors {
             // used for f-droid
             register("generic") {
-                applicationId = "com.nextcloud.client"
+                applicationId = "vn.datadrive.client"
                 dimension = "default"
             }
 
             register("gplay") {
-                applicationId = "com.nextcloud.client"
+                applicationId = "vn.datadrive.client.gplay"
                 dimension = "default"
             }
 
             register("huawei") {
-                applicationId = "com.nextcloud.client"
+                applicationId = "vn.datadrive.client.huawei"
                 dimension = "default"
             }
 
             register("versionDev") {
-                applicationId = "com.nextcloud.android.beta"
+                applicationId = "vn.datadrive.client.beta"
                 dimension = "default"
                 versionCode = 20220322
                 versionName = "20220322"
             }
 
             register("qa") {
-                applicationId = "com.nextcloud.android.qa"
+                applicationId = "vn.datadrive.client.qa"
                 dimension = "default"
                 versionCode = 1
                 versionName = "1"

@@ -9,7 +9,7 @@
   ~ SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
 -->
 <paths>
-    <files-path name="user_files_internal" path="nextcloud/"/>
+    <files-path name="user_files_internal" path="datadrive/"/>
     <files-path
         path="log/"
         name="log"/>
