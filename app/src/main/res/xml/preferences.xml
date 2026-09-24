@@ -143,6 +143,9 @@
 			android:id="@+id/privacy"
 			android:key="privacy"/>
 		<Preference
+			android:title="@string/terms_of_service_title"
+			android:key="terms"/>
+		<Preference
 			android:title="@string/prefs_open_source_licenses"
 			android:summary="@string/prefs_based_on_nextcloud"
 			android:id="@+id/sourcecode"

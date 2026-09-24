@@ -338,6 +338,15 @@ public class SettingsActivity extends PreferenceActivity
             }
         }
 
+        // terms of service
+        Preference termsPreference = findPreference("terms");
+        if (termsPreference != null) {
+            termsPreference.setOnPreferenceClickListener(preference -> {
+                DisplayUtils.startLinkIntent(this, R.string.terms_url);
+                return true;
+            });
+        }
+
         // source code
         boolean sourcecodeEnabled = getResources().getBoolean(R.bool.sourcecode_enabled);
         Preference sourcecodePreference = findPreference("sourcecode");

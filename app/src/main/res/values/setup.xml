@@ -87,7 +87,8 @@
     <bool name="help_enabled">true</bool>
     <string name="url_help">https://datadrive.vn</string>
     <bool name="privacy_enabled">true</bool>
-    <string name="privacy_url">https://datadrive.vn</string>
+    <string name="privacy_url">https://datadrive.vn/privacy/</string>
+    <string name="terms_url" translatable="false">https://datadrive.vn/terms/</string>
     <bool name="imprint_enabled">false</bool>
     <bool name="recommend_enabled">false</bool>
     <bool name="logger_enabled">false</bool>

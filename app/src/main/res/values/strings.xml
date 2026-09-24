@@ -1642,9 +1642,6 @@
     <!-- DataDrive -->
     <string name="first_run_tagline">Your files, safe and in sync everywhere</string>
     <string name="home_page">Home Page</string>
-    <string name="language_short_en" translatable="false">EN</string>
-    <string name="language_short_vi" translatable="false">VI</string>
-    <string name="language_separator" translatable="false">|</string>
     <string name="language_name_en" translatable="false">English</string>
     <string name="language_name_vi" translatable="false">Tiếng Việt</string>
     <string name="prefs_language_title" translatable="false">Language / Ngôn ngữ</string>

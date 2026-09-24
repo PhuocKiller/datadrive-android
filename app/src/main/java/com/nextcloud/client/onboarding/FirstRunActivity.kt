@@ -10,7 +10,6 @@ package com.nextcloud.client.onboarding
 import android.accounts.AccountManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -21,7 +20,6 @@ import androidx.core.net.toUri
 import com.nextcloud.client.account.UserAccountManager
 import com.nextcloud.client.di.Injectable
 import com.nextcloud.client.preferences.AppPreferences
-import com.nextcloud.utils.AppLanguage
 import com.owncloud.android.BuildConfig
 import com.owncloud.android.R
 import com.owncloud.android.authentication.AuthenticatorActivity
@@ -33,7 +31,7 @@ import com.owncloud.android.utils.theme.ViewThemeUtils
 import javax.inject.Inject
 
 /**
- * DataDrive welcome screen: logo, tagline, "Log in", "Home Page" and the EN | VI language switch.
+ * DataDrive welcome screen: logo, tagline, "Log in" and "Home Page". The language is chosen in Settings.
  */
 class FirstRunActivity :
     BaseActivity(),
@@ -73,7 +71,6 @@ class FirstRunActivity :
         registerActivityResult()
         setupLoginButton()
         setupHomePageButton()
-        setupLanguageToggle()
         deleteAccountAtFirstLaunch()
         handleOnBackPressed()
     }
@@ -130,16 +127,6 @@ class FirstRunActivity :
         }
     }
 
-    private fun setupLanguageToggle() {
-        val isVietnamese = AppLanguage.current(this) == AppLanguage.VIETNAMESE
-        binding.languageEn.setTypeface(null, if (isVietnamese) Typeface.NORMAL else Typeface.BOLD)
-        binding.languageVi.setTypeface(null, if (isVietnamese) Typeface.BOLD else Typeface.NORMAL)
-        binding.languageEn.alpha = if (isVietnamese) INACTIVE_ALPHA else 1f
-        binding.languageVi.alpha = if (isVietnamese) 1f else INACTIVE_ALPHA
-        binding.languageEn.setOnClickListener { AppLanguage.set(this, AppLanguage.ENGLISH) }
-        binding.languageVi.setOnClickListener { AppLanguage.set(this, AppLanguage.VIETNAMESE) }
-    }
-
     // Sometimes, accounts are not deleted when you uninstall the application so we'll do it now
     private fun deleteAccountAtFirstLaunch() {
         if (onboarding?.isFirstRun == true) {
@@ -184,6 +171,5 @@ class FirstRunActivity :
     companion object {
         const val EXTRA_ALLOW_CLOSE = "ALLOW_CLOSE"
         const val EXTRA_EXIT = "EXIT"
-        private const val INACTIVE_ALPHA = 0.6f
     }
 }
