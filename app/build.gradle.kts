@@ -234,7 +234,8 @@ android {
                 "SelectedPhotoAccess",
                 "UnsafeIntentLaunch",
                 "OldTargetApi",
-                "AndroidGradlePluginVersion"
+                "AndroidGradlePluginVersion",
+                "UnusedTranslation" // DataDrive ships en/vi only (localeFilters)
             )
         )
         htmlOutput = layout.buildDirectory.file("reports/lint/lint.html").get().asFile

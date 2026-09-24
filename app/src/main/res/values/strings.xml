@@ -4,7 +4,7 @@
   ~ SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
   ~ SPDX-License-Identifier: AGPL-3.0-or-later OR GPL-2.0-only
 -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="backup_list_adapter_local_contacts">Local contacts</string>
 
     <string name="preview_text_string_fragment_open_rich_text_editor_error_message">Failed to open text editor</string>
@@ -931,7 +931,7 @@
     <string name="foreground_service_upload">Uploading files…</string>
     <string name="worker_download">Downloading files…</string>
 
-    <string name="prefs_sourcecode">Get source code</string>
+    <string name="prefs_sourcecode" tools:ignore="UnusedResources">Get source code</string>
     <string name="prefs_license">License</string>
     <string name="prefs_gpl_v2">GNU General Public License, version 2</string>
     <string name="push_notifications_not_implemented">Push notifications disabled due to dependencies on proprietary Google Play services.</string>
@@ -1071,12 +1071,12 @@
     <string name="prefs_e2e_mnemonic">E2E mnemonic</string>
     <string name="prefs_e2e_no_device_credentials">To show mnemonic please enable device credentials.</string>
     <string name="login">Log in</string>
-    <string name="signup_with_provider">Sign up with provider</string>
-    <string name="host_your_own_server">Host your own server</string>
-    <string name="first_run_1_text">Keep your data secure and under your control</string>
-    <string name="first_run_2_text">Secure collaboration and file exchange</string>
-    <string name="first_run_3_text">Easy-to-use webmail, calendar and contacts</string>
-    <string name="first_run_4_text">Screensharing, online meetings and web conferences</string>
+    <string name="signup_with_provider" tools:ignore="UnusedResources">Sign up with provider</string>
+    <string name="host_your_own_server" tools:ignore="UnusedResources">Host your own server</string>
+    <string name="first_run_1_text" tools:ignore="UnusedResources">Keep your data secure and under your control</string>
+    <string name="first_run_2_text" tools:ignore="UnusedResources">Secure collaboration and file exchange</string>
+    <string name="first_run_3_text" tools:ignore="UnusedResources">Easy-to-use webmail, calendar and contacts</string>
+    <string name="first_run_4_text" tools:ignore="UnusedResources">Screensharing, online meetings and web conferences</string>
     <string name="restore_button_description">Restore deleted file</string>
     <string name="restore">Restore file</string>
     <string name="restore_item">Restore</string>
@@ -1649,9 +1649,9 @@
     <string name="language_name_vi" translatable="false">Tiếng Việt</string>
     <string name="prefs_language_title" translatable="false">Language / Ngôn ngữ</string>
     <!-- DataDrive: overrides of library strings -->
-    <string name="bad_oc_version">No valid DataDrive server version was found</string>
-    <string name="instance_not_configured">The DataDrive server is not configured!</string>
-    <string name="notification_channel_name">DataDrive connection</string>
+    <string name="bad_oc_version" tools:ignore="UnusedResources">No valid DataDrive server version was found</string>
+    <string name="instance_not_configured" tools:ignore="UnusedResources">The DataDrive server is not configured!</string>
+    <string name="notification_channel_name" tools:ignore="UnusedResources">DataDrive connection</string>
     <string name="prefs_open_source_licenses">Open source licenses</string>
     <string name="prefs_based_on_nextcloud">Based on Nextcloud Android (GPLv2). Tap to view the source code.</string>
 </resources>
