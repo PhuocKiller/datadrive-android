@@ -1,4 +1,16 @@
-The self-hosted productivity platform that keeps you in control.
-This is the official development version, featuring a daily sample of any new untested functionality, which may cause instability and data loss. The app is for users willing to test, and report bugs should they occur. Do not use it for your productive work!
+DataDrive keeps your files safe in the cloud and in sync across your devices.
 
-Both the official dev and regular version are available on F-droid, and can be installed at the same time.
+Features:
+* Easy, modern interface
+* Upload files to DataDrive
+* Share them with others
+* Keep your favorite files and folders synced
+* Search across all folders
+* Auto Upload for photos and videos taken by your device
+* Keep up to date with notifications
+* Multi-account support
+* Secure access to your data with fingerprint or PIN
+
+Learn more at https://datadrive.vn
+
+DataDrive is based on the open source Nextcloud Android app (GPLv2).

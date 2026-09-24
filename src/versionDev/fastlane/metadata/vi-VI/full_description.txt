@@ -1,0 +1,16 @@
+DataDrive giữ tệp của bạn an toàn trên đám mây và đồng bộ giữa các thiết bị.
+
+Tính năng:
+* Giao diện đơn giản, hiện đại
+* Tải tệp lên DataDrive
+* Chia sẻ tệp với người khác
+* Đồng bộ tệp và thư mục yêu thích
+* Tìm kiếm trong mọi thư mục
+* Tự động tải lên ảnh và video chụp trên thiết bị
+* Nhận thông báo cập nhật
+* Hỗ trợ nhiều tài khoản
+* Bảo vệ dữ liệu bằng vân tay hoặc mã PIN
+
+Tìm hiểu thêm tại https://datadrive.vn
+
+DataDrive dựa trên ứng dụng mã nguồn mở Nextcloud Android (GPLv2).
