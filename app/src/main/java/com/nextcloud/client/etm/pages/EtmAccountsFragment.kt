@@ -61,7 +61,7 @@ class EtmAccountsFragment : EtmBaseFragment() {
 
     private fun onClickedShare() {
         val intent = Intent(Intent.ACTION_SEND)
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Nextcloud accounts information")
+        intent.putExtra(Intent.EXTRA_SUBJECT, "DataDrive accounts information")
         intent.putExtra(Intent.EXTRA_TEXT, binding.etmAccountsText.text)
         intent.type = "text/plain"
         startActivity(intent)
