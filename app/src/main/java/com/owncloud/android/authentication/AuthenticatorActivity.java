@@ -166,6 +166,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
     private static final String KEY_AUTH_STATUS_ICON = "AUTH_STATUS_ICON";
     private static final String KEY_SERVER_AUTH_METHOD = "SERVER_AUTH_METHOD";
     private static final String KEY_WAITING_FOR_OP_ID = "WAITING_FOR_OP_ID";
+    private static final String KEY_WAITING_FOR_FIRST_RUN = "WAITING_FOR_FIRST_RUN";
     private static final String KEY_ONLY_ADD = "onlyAdd";
 
     public static final byte ACTION_CREATE = 0;
@@ -236,6 +237,8 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
     private AuthObject authObject = null;
     private String fallbackToken;
     private boolean onlyAdd = false;
+    private boolean waitingForFirstRun = false;
+    private String pendingWebLoginUrl;
 
     private final Gson gson = new Gson();
 
@@ -263,7 +266,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         Uri data = getIntent().getData();
         boolean directLogin = data != null && data.toString().startsWith(getString(R.string.login_data_own_scheme));
         if (savedInstanceState == null && !directLogin) {
-            onboarding.launchFirstRunIfNeeded(this);
+            waitingForFirstRun = onboarding.launchFirstRunIfNeeded(this);
+        } else if (savedInstanceState != null) {
+            waitingForFirstRun = savedInstanceState.getBoolean(KEY_WAITING_FOR_FIRST_RUN, false);
         }
 
         onlyAdd = getIntent().getBooleanExtra(KEY_ONLY_ADD, false) || checkIfViaSSO(getIntent());
@@ -325,7 +330,12 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         if (webViewLoginMethod) {
             accountSetupWebviewBinding = AccountSetupWebviewBinding.inflate(getLayoutInflater());
             setContentView(accountSetupWebviewBinding.getRoot());
-            anonymouslyPostLoginRequest(webloginUrl);
+            if (waitingForFirstRun) {
+                // the welcome screen is shown on top; log in only once the user asks for it
+                pendingWebLoginUrl = webloginUrl;
+            } else {
+                anonymouslyPostLoginRequest(webloginUrl);
+            }
         } else {
             accountSetupBinding = AccountSetupBinding.inflate(getLayoutInflater());
             setContentView(accountSetupBinding.getRoot());
@@ -827,6 +837,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
 
         /// global state
         outState.putLong(KEY_WAITING_FOR_OP_ID, mWaitingForOpId);
+        outState.putBoolean(KEY_WAITING_FOR_FIRST_RUN, waitingForFirstRun);
 
         outState.putBoolean(KEY_IS_SSL_CONN, mServerInfo.mIsSslConn);
         outState.putString(KEY_HOST_URL_TEXT, mServerInfo.mBaseUrl);
@@ -846,6 +857,22 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             outState.putBoolean(KEY_ASYNC_TASK_IN_PROGRESS, false);
         }
         mAsyncTask = null;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode != REQUEST_CODE_FIRST_RUN) {
+            return;
+        }
+        waitingForFirstRun = false;
+        if (resultCode == RESULT_OK && pendingWebLoginUrl != null) {
+            String url = pendingWebLoginUrl;
+            pendingWebLoginUrl = null;
+            anonymouslyPostLoginRequest(url);
+        } else if (resultCode != RESULT_OK) {
+            finish();
+        }
     }
 
     @Override

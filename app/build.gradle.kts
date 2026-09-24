@@ -103,7 +103,10 @@ android {
     namespace = "com.owncloud.android"
     testNamespace = "${namespace}.test"
 
-    androidResources.generateLocaleConfig = true
+    androidResources {
+        generateLocaleConfig = false
+        localeFilters += listOf("en", "vi")
+    }
 
     defaultConfig {
         testInstrumentationRunnerArguments += mapOf(

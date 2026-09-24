@@ -876,4 +876,6 @@
     <plurals name="items_selected_count">
         <item quantity="other">Đã chọn %d </item>
     </plurals>
-    </resources>
+        <string name="first_run_tagline">Dữ liệu của bạn, an toàn và đồng bộ ở mọi nơi</string>
+    <string name="home_page">Trang chủ</string>
+</resources>

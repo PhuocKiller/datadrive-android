@@ -82,6 +82,7 @@ import com.owncloud.android.utils.MimeTypeUtil;
 import com.owncloud.android.utils.PermissionUtil;
 import com.owncloud.android.utils.theme.CapabilityUtils;
 import com.owncloud.android.utils.theme.ViewThemeUtils;
+import com.nextcloud.utils.AppLanguage;
 
 import java.text.DateFormat;
 import java.util.Objects;
@@ -966,6 +967,35 @@ public class SettingsActivity extends PreferenceActivity
                 return true;
             });
         }
+
+        setupLanguagePreference();
+    }
+
+    private void setupLanguagePreference() {
+        final var languagePref = findPreference("app_language");
+        if (languagePref == null) {
+            return;
+        }
+
+        final String[] codes = {AppLanguage.ENGLISH, AppLanguage.VIETNAMESE};
+        final String[] names = {getString(R.string.language_name_en), getString(R.string.language_name_vi)};
+        final int current = AppLanguage.VIETNAMESE.equals(AppLanguage.INSTANCE.current(this)) ? 1 : 0;
+        languagePref.setSummary(names[current]);
+
+        languagePref.setOnPreferenceClickListener(preference -> {
+            new MaterialAlertDialogBuilder(this)
+                .setTitle(R.string.prefs_language_title)
+                .setSingleChoiceItems(names, current, (dialog, which) -> {
+                    dialog.dismiss();
+                    if (which != current) {
+                        AppLanguage.INSTANCE.set(this, codes[which]);
+                        recreate();
+                    }
+                })
+                .setNegativeButton(R.string.common_cancel, null)
+                .show();
+            return true;
+        });
     }
 
     private void updateThemePreferenceSummary(String themeValue) {

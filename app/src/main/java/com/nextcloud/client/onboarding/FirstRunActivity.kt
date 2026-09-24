@@ -8,37 +8,32 @@
 package com.nextcloud.client.onboarding
 
 import android.accounts.AccountManager
+import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.content.res.Configuration
+import android.graphics.Typeface
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.viewpager2.widget.ViewPager2
-import com.nextcloud.android.common.ui.theme.utils.ColorRole
+import androidx.core.net.toUri
 import com.nextcloud.client.account.UserAccountManager
-import com.nextcloud.client.appinfo.AppInfo
 import com.nextcloud.client.di.Injectable
 import com.nextcloud.client.preferences.AppPreferences
-import com.nextcloud.utils.mdm.MDMConfig
+import com.nextcloud.utils.AppLanguage
 import com.owncloud.android.BuildConfig
 import com.owncloud.android.R
 import com.owncloud.android.authentication.AuthenticatorActivity
 import com.owncloud.android.databinding.FirstRunActivityBinding
-import com.owncloud.android.features.FeatureItem
 import com.owncloud.android.ui.activity.BaseActivity
 import com.owncloud.android.ui.activity.FileDisplayActivity
-import com.owncloud.android.ui.adapter.FeaturesViewAdapter
 import com.owncloud.android.utils.DisplayUtils
 import com.owncloud.android.utils.theme.ViewThemeUtils
 import javax.inject.Inject
 
 /**
- * Activity displaying general feature after a fresh install.
+ * DataDrive welcome screen: logo, tagline, "Log in", "Home Page" and the EN | VI language switch.
  */
 class FirstRunActivity :
     BaseActivity(),
@@ -51,10 +46,6 @@ class FirstRunActivity :
     @JvmField
     @Inject
     var preferences: AppPreferences? = null
-
-    @JvmField
-    @Inject
-    var appInfo: AppInfo? = null
 
     @JvmField
     @Inject
@@ -79,14 +70,11 @@ class FirstRunActivity :
         binding = FirstRunActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSlideshowSize(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-
         registerActivityResult()
         setupLoginButton()
-        setupSignupButton(MDMConfig.showIntro(this))
-        setupHostOwnServerTextView(MDMConfig.showIntro(this))
+        setupHomePageButton()
+        setupLanguageToggle()
         deleteAccountAtFirstLaunch()
-        setupFeaturesViewAdapter()
         handleOnBackPressed()
     }
 
@@ -122,46 +110,34 @@ class FirstRunActivity :
         defaultViewThemeUtils?.material?.colorMaterialButtonFilledOnPrimary(binding.login)
         binding.login.setOnClickListener {
             if (intent.getBooleanExtra(EXTRA_ALLOW_CLOSE, false)) {
-                val authenticatorActivityIntent = getAuthenticatorActivityIntent(false)
-                activityResult?.launch(authenticatorActivityIntent)
+                activityResult?.launch(Intent(this, AuthenticatorActivity::class.java))
             } else {
+                // started for result by AuthenticatorActivity, which starts the web login once we return
+                setResult(RESULT_OK)
                 finish()
             }
         }
     }
 
-    private fun setupSignupButton(isProviderOrOwnInstallationVisible: Boolean) {
-        defaultViewThemeUtils?.material?.colorMaterialButtonOutlinedOnPrimary(binding.signup)
-        binding.signup.visibility = if (isProviderOrOwnInstallationVisible) View.VISIBLE else View.GONE
-        binding.signup.setOnClickListener {
-            val authenticatorActivityIntent = getAuthenticatorActivityIntent(true)
-
-            if (intent.getBooleanExtra(EXTRA_ALLOW_CLOSE, false)) {
-                activityResult?.launch(authenticatorActivityIntent)
-            } else {
-                authenticatorActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(authenticatorActivityIntent)
+    private fun setupHomePageButton() {
+        defaultViewThemeUtils?.material?.colorMaterialButtonOutlinedOnPrimary(binding.homePage)
+        binding.homePage.setOnClickListener {
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, getString(R.string.url_home_page).toUri()))
+            } catch (e: ActivityNotFoundException) {
+                Toast.makeText(this, R.string.no_browser_available, Toast.LENGTH_LONG).show()
             }
         }
     }
 
-    private fun getAuthenticatorActivityIntent(extraUseProviderAsWebLogin: Boolean): Intent {
-        val intent = Intent(this, AuthenticatorActivity::class.java)
-        intent.putExtra(AuthenticatorActivity.EXTRA_USE_PROVIDER_AS_WEBLOGIN, extraUseProviderAsWebLogin)
-        return intent
-    }
-
-    private fun setupHostOwnServerTextView(isProviderOrOwnInstallationVisible: Boolean) {
-        defaultViewThemeUtils?.platform?.colorTextView(binding.hostOwnServer, ColorRole.ON_PRIMARY)
-        binding.hostOwnServer.visibility = if (isProviderOrOwnInstallationVisible) View.VISIBLE else View.GONE
-        if (isProviderOrOwnInstallationVisible) {
-            binding.hostOwnServer.setOnClickListener {
-                DisplayUtils.startLinkIntent(
-                    this,
-                    R.string.url_server_install
-                )
-            }
-        }
+    private fun setupLanguageToggle() {
+        val isVietnamese = AppLanguage.current(this) == AppLanguage.VIETNAMESE
+        binding.languageEn.setTypeface(null, if (isVietnamese) Typeface.NORMAL else Typeface.BOLD)
+        binding.languageVi.setTypeface(null, if (isVietnamese) Typeface.BOLD else Typeface.NORMAL)
+        binding.languageEn.alpha = if (isVietnamese) INACTIVE_ALPHA else 1f
+        binding.languageVi.alpha = if (isVietnamese) 1f else INACTIVE_ALPHA
+        binding.languageEn.setOnClickListener { AppLanguage.set(this, AppLanguage.ENGLISH) }
+        binding.languageVi.setOnClickListener { AppLanguage.set(this, AppLanguage.VIETNAMESE) }
     }
 
     // Sometimes, accounts are not deleted when you uninstall the application so we'll do it now
@@ -169,18 +145,6 @@ class FirstRunActivity :
         if (onboarding?.isFirstRun == true) {
             userAccountManager?.removeAllAccounts()
         }
-    }
-
-    @Suppress("SpreadOperator")
-    private fun setupFeaturesViewAdapter() {
-        val featuresViewAdapter = FeaturesViewAdapter(this, *firstRun)
-        binding.progressIndicator.setNumberOfSteps(featuresViewAdapter.itemCount)
-        binding.contentPanel.adapter = featuresViewAdapter
-        binding.contentPanel.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                binding.progressIndicator.animateToStep(position + 1)
-            }
-        })
     }
 
     private fun handleOnBackPressed() {
@@ -208,30 +172,6 @@ class FirstRunActivity :
         )
     }
 
-    private fun setSlideshowSize(isLandscape: Boolean) {
-        binding.buttonLayout.orientation = if (isLandscape) LinearLayout.HORIZONTAL else LinearLayout.VERTICAL
-
-        val layoutParams: LinearLayout.LayoutParams = if (MDMConfig.showIntro(this)) {
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        } else {
-            @Suppress("MagicNumber")
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                DisplayUtils.convertDpToPixel(if (isLandscape) 100f else 150f, this)
-            )
-        }
-
-        binding.bottomLayout.layoutParams = layoutParams
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        setSlideshowSize(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
-    }
-
     private fun onFinish() {
         preferences?.lastSeenVersionCode = BuildConfig.VERSION_CODE
     }
@@ -244,13 +184,6 @@ class FirstRunActivity :
     companion object {
         const val EXTRA_ALLOW_CLOSE = "ALLOW_CLOSE"
         const val EXTRA_EXIT = "EXIT"
-
-        val firstRun: Array<FeatureItem>
-            get() = arrayOf(
-                FeatureItem(R.drawable.logo, R.string.first_run_1_text, R.string.empty, true, false),
-                FeatureItem(R.drawable.first_run_files, R.string.first_run_2_text, R.string.empty, true, false),
-                FeatureItem(R.drawable.first_run_groupware, R.string.first_run_3_text, R.string.empty, true, false),
-                FeatureItem(R.drawable.first_run_talk, R.string.first_run_4_text, R.string.empty, true, false)
-            )
+        private const val INACTIVE_ALPHA = 0.6f
     }
 }
