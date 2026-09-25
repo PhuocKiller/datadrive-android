@@ -156,6 +156,9 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
     public static final String EXTRA_ACTION = "ACTION";
     public static final String EXTRA_ACCOUNT = "ACCOUNT";
     public static final String EXTRA_USE_PROVIDER_AS_WEBLOGIN = "USE_PROVIDER_AS_WEBLOGIN";
+    public static final String EXTRA_LOGIN_SERVER = "LOGIN_SERVER";
+    public static final String EXTRA_LOGIN_NAME = "LOGIN_NAME";
+    public static final String EXTRA_LOGIN_APP_PASSWORD = "LOGIN_APP_PASSWORD";
 
     private static final String KEY_HOST_URL_TEXT = "HOST_URL_TEXT";
     private static final String KEY_OC_VERSION = "OC_VERSION";
@@ -238,7 +241,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
     private String fallbackToken;
     private boolean onlyAdd = false;
     private boolean waitingForFirstRun = false;
-    private String pendingWebLoginUrl;
+    private LoginUrlInfo pendingLogin;
 
     private final Gson gson = new Gson();
 
@@ -266,7 +269,12 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         Uri data = getIntent().getData();
         boolean directLogin = data != null && data.toString().startsWith(getString(R.string.login_data_own_scheme));
         if (savedInstanceState == null && !directLogin) {
-            waitingForFirstRun = onboarding.launchFirstRunIfNeeded(this);
+            // DataDrive signs in with user name and password on its own screen, never in the browser
+            pendingLogin = loginFromExtras(getIntent());
+            if (pendingLogin == null) {
+                waitingForFirstRun = true;
+                startActivityForResult(new Intent(this, FirstRunActivity.class), REQUEST_CODE_FIRST_RUN);
+            }
         } else if (savedInstanceState != null) {
             waitingForFirstRun = savedInstanceState.getBoolean(KEY_WAITING_FOR_FIRST_RUN, false);
         }
@@ -330,12 +338,6 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         if (webViewLoginMethod) {
             accountSetupWebviewBinding = AccountSetupWebviewBinding.inflate(getLayoutInflater());
             setContentView(accountSetupWebviewBinding.getRoot());
-            if (waitingForFirstRun) {
-                // the welcome screen is shown on top; log in only once the user asks for it
-                pendingWebLoginUrl = webloginUrl;
-            } else {
-                anonymouslyPostLoginRequest(webloginUrl);
-            }
         } else {
             accountSetupBinding = AccountSetupBinding.inflate(getLayoutInflater());
             setContentView(accountSetupBinding.getRoot());
@@ -866,13 +868,28 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
             return;
         }
         waitingForFirstRun = false;
-        if (resultCode == RESULT_OK && pendingWebLoginUrl != null) {
-            String url = pendingWebLoginUrl;
-            pendingWebLoginUrl = null;
-            anonymouslyPostLoginRequest(url);
-        } else if (resultCode != RESULT_OK) {
+        LoginUrlInfo credentials = resultCode == RESULT_OK ? loginFromExtras(data) : null;
+        if (credentials == null) {
             finish();
+        } else if (mOperationsServiceBinder != null) {
+            login(credentials);
+        } else {
+            pendingLogin = credentials;
         }
+    }
+
+    @Nullable
+    private static LoginUrlInfo loginFromExtras(@Nullable Intent intent) {
+        if (intent == null) {
+            return null;
+        }
+        String server = intent.getStringExtra(EXTRA_LOGIN_SERVER);
+        String loginName = intent.getStringExtra(EXTRA_LOGIN_NAME);
+        String appPassword = intent.getStringExtra(EXTRA_LOGIN_APP_PASSWORD);
+        if (TextUtils.isEmpty(server) || TextUtils.isEmpty(loginName) || TextUtils.isEmpty(appPassword)) {
+            return null;
+        }
+        return new LoginUrlInfo(server, loginName, appPassword);
     }
 
     @Override
@@ -1800,6 +1817,10 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
                         mServerStatusText = getString(R.string.qr_could_not_be_read);
                         showServerStatus();
                     }
+                } else if (pendingLogin != null) {
+                    LoginUrlInfo credentials = pendingLogin;
+                    pendingLogin = null;
+                    login(credentials);
                 } else {
                     doOnResumeAndBound();
                 }

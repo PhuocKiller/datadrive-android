@@ -1651,4 +1651,10 @@
     <string name="notification_channel_name" tools:ignore="UnusedResources">DataDrive connection</string>
     <string name="prefs_open_source_licenses">Open source licenses</string>
     <string name="prefs_based_on_nextcloud">Based on Nextcloud Android (GPLv2). Tap to view the source code.</string>
+    <string name="login_username_hint">Username or email</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_fields_required">Please enter your username and password</string>
+    <string name="login_wrong_credentials">Wrong username or password</string>
+    <string name="login_server_unreachable">Cannot reach DataDrive. Check your connection and try again.</string>
+    <string name="login_no_account">No account yet? Sign up on our home page.</string>
 </resources>

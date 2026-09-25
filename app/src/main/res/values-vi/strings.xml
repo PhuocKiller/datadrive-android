@@ -1389,4 +1389,10 @@
     <string name="notification_channel_name">Kết nối tới DataDrive</string>
     <string name="prefs_open_source_licenses">Giấy phép mã nguồn mở</string>
     <string name="prefs_based_on_nextcloud">Dựa trên Nextcloud Android (GPLv2). Nhấn để xem mã nguồn.</string>
+    <string name="login_username_hint">Tên đăng nhập hoặc email</string>
+    <string name="login_password_hint">Mật khẩu</string>
+    <string name="login_fields_required">Vui lòng nhập tên đăng nhập và mật khẩu</string>
+    <string name="login_wrong_credentials">Sai tên đăng nhập hoặc mật khẩu</string>
+    <string name="login_server_unreachable">Không kết nối được DataDrive. Kiểm tra mạng rồi thử lại.</string>
+    <string name="login_no_account">Chưa có tài khoản? Đăng ký tại trang chủ.</string>
 </resources>

@@ -11,12 +11,16 @@ import android.accounts.AccountManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import com.nextcloud.client.account.UserAccountManager
 import com.nextcloud.client.di.Injectable
 import com.nextcloud.client.preferences.AppPreferences
@@ -28,10 +32,13 @@ import com.owncloud.android.ui.activity.BaseActivity
 import com.owncloud.android.ui.activity.FileDisplayActivity
 import com.owncloud.android.utils.DisplayUtils
 import com.owncloud.android.utils.theme.ViewThemeUtils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
- * DataDrive welcome screen: logo, tagline, "Log in" and "Home Page". The language is chosen in Settings.
+ * DataDrive sign-in screen: user name and password for the fixed DataDrive server, plus "Home Page" to sign up.
  */
 class FirstRunActivity :
     BaseActivity(),
@@ -104,14 +111,74 @@ class FirstRunActivity :
     }
 
     private fun setupLoginButton() {
-        binding.login.setOnClickListener {
-            if (intent.getBooleanExtra(EXTRA_ALLOW_CLOSE, false)) {
-                activityResult?.launch(Intent(this, AuthenticatorActivity::class.java))
+        binding.login.setOnClickListener { signIn() }
+        binding.password.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                signIn()
+                true
             } else {
-                // started for result by AuthenticatorActivity, which starts the web login once we return
-                setResult(RESULT_OK)
-                finish()
+                false
             }
+        }
+    }
+
+    private fun signIn() {
+        val user = binding.username.text?.toString()?.trim().orEmpty()
+        val password = binding.password.text?.toString().orEmpty()
+        if (user.isEmpty() || password.isEmpty()) {
+            showLoginError(R.string.login_fields_required)
+            return
+        }
+
+        showLoginError(null)
+        setSigningIn(true)
+        val server = getString(R.string.datadrive_server_url)
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) { DataDriveLogin.signIn(server, user, password) }
+            when (result) {
+                is DataDriveLogin.Result.Success -> onSignedIn(server, result.loginName, result.appPassword)
+                DataDriveLogin.Result.WrongCredentials -> {
+                    setSigningIn(false)
+                    binding.password.text = null
+                    showLoginError(R.string.login_wrong_credentials)
+                }
+                DataDriveLogin.Result.ServerUnreachable -> {
+                    setSigningIn(false)
+                    showLoginError(R.string.login_server_unreachable)
+                }
+            }
+        }
+    }
+
+    private fun onSignedIn(server: String, loginName: String, appPassword: String) {
+        val credentials = Intent()
+            .putExtra(AuthenticatorActivity.EXTRA_LOGIN_SERVER, server)
+            .putExtra(AuthenticatorActivity.EXTRA_LOGIN_NAME, loginName)
+            .putExtra(AuthenticatorActivity.EXTRA_LOGIN_APP_PASSWORD, appPassword)
+
+        if (intent.getBooleanExtra(EXTRA_ALLOW_CLOSE, false)) {
+            // adding a further account: let AuthenticatorActivity create it, then open it
+            activityResult?.launch(credentials.setClass(this, AuthenticatorActivity::class.java))
+        } else {
+            // started for result by AuthenticatorActivity, which creates the account
+            setResult(RESULT_OK, credentials)
+            finish()
+        }
+    }
+
+    private fun setSigningIn(signingIn: Boolean) {
+        binding.login.isEnabled = !signingIn
+        binding.username.isEnabled = !signingIn
+        binding.password.isEnabled = !signingIn
+        binding.loginProgress.visibility = if (signingIn) View.VISIBLE else View.GONE
+    }
+
+    private fun showLoginError(@StringRes message: Int?) {
+        if (message == null) {
+            binding.loginError.visibility = View.GONE
+        } else {
+            binding.loginError.setText(message)
+            binding.loginError.visibility = View.VISIBLE
         }
     }
 
