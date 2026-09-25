@@ -143,8 +143,27 @@ android {
 
         flavorDimensions += "default"
 
+        // DataDrive release signing: keystore.properties kept outside the repo
+        val ddKeystoreProps = listOf(
+            rootProject.file("keystore.properties"),
+            file(System.getProperty("user.home") + "/datadrive-keys/keystore.properties")
+        ).firstOrNull { it.exists() }?.let { f -> Properties().apply { FileInputStream(f).use { load(it) } } }
+        if (ddKeystoreProps != null) {
+            signingConfigs {
+                create("datadrive") {
+                    storeFile = file(ddKeystoreProps.getProperty("storeFile"))
+                    storePassword = ddKeystoreProps.getProperty("storePassword")
+                    keyAlias = ddKeystoreProps.getProperty("keyAlias")
+                    keyPassword = ddKeystoreProps.getProperty("keyPassword")
+                }
+            }
+        }
+
         buildTypes {
             release {
+                if (ddKeystoreProps != null) {
+                    signingConfig = signingConfigs.getByName("datadrive")
+                }
                 buildConfigField("String", "NC_TEST_SERVER_DATA_STRING", "\"\"")
             }
 
