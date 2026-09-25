@@ -69,8 +69,8 @@
     <color name="primary">#0A93E0</color>
     <color name="primary_dark">#0877B8</color>
     <color name="color_accent">#0A93E0</color>
-    <color name="login_text_color">#ffffff</color>
-    <color name="login_text_hint_color">#7fC0E3</color>
+    <color name="login_text_color">#0F2A4A</color>
+    <color name="login_text_hint_color">#64748B</color>
 
     <!-- Multiaccount support -->
     <bool name="multiaccount_support">true</bool>

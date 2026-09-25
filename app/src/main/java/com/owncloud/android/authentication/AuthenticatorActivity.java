@@ -261,7 +261,7 @@ public class AuthenticatorActivity extends AccountAuthenticatorActivity
         super.onCreate(savedInstanceState);
         loginDialog = new LoginDialog(this);
         viewThemeUtils = viewThemeUtilsFactory.withPrimaryAsBackground();
-        viewThemeUtils.platform.colorStatusBar(this, getResources().getColor(R.color.primary));
+        viewThemeUtils.platform.colorStatusBar(this, getResources().getColor(R.color.white));
 
         Uri data = getIntent().getData();
         boolean directLogin = data != null && data.toString().startsWith(getString(R.string.login_data_own_scheme));

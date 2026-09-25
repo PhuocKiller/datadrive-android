@@ -12,7 +12,7 @@
     android:id="@+id/drawer_header_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/primary"
+    android:background="@color/bg_default"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -42,7 +42,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:maxLines="2"
-            android:textColor="@color/text_color_inverse"
+            android:textColor="@color/text_color"
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="gone"

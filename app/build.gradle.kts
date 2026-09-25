@@ -254,7 +254,8 @@ android {
                 "UnsafeIntentLaunch",
                 "OldTargetApi",
                 "AndroidGradlePluginVersion",
-                "UnusedTranslation" // DataDrive ships en/vi only (localeFilters)
+                "UnusedTranslation", // DataDrive ships en/vi only (localeFilters)
+                "IconLauncherShape" // DataDrive icon has no backplate; minSdk 28 uses the adaptive icon
             )
         )
         htmlOutput = layout.buildDirectory.file("reports/lint/lint.html").get().asFile

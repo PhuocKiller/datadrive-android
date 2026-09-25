@@ -77,7 +77,7 @@ class FirstRunActivity :
 
     private fun applyDefaultTheme() {
         defaultViewThemeUtils = viewThemeUtilsFactory?.withPrimaryAsBackground()
-        defaultViewThemeUtils?.platform?.colorStatusBar(this, resources.getColor(R.color.primary))
+        defaultViewThemeUtils?.platform?.colorStatusBar(this, resources.getColor(R.color.white))
     }
 
     private fun registerActivityResult() {
@@ -104,7 +104,6 @@ class FirstRunActivity :
     }
 
     private fun setupLoginButton() {
-        defaultViewThemeUtils?.material?.colorMaterialButtonFilledOnPrimary(binding.login)
         binding.login.setOnClickListener {
             if (intent.getBooleanExtra(EXTRA_ALLOW_CLOSE, false)) {
                 activityResult?.launch(Intent(this, AuthenticatorActivity::class.java))
@@ -117,7 +116,6 @@ class FirstRunActivity :
     }
 
     private fun setupHomePageButton() {
-        defaultViewThemeUtils?.material?.colorMaterialButtonOutlinedOnPrimary(binding.homePage)
         binding.homePage.setOnClickListener {
             try {
                 startActivity(Intent(Intent.ACTION_VIEW, getString(R.string.url_home_page).toUri()))
