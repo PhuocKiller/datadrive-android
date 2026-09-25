@@ -112,20 +112,12 @@
             android:indeterminateTint="@color/primary"
             android:visibility="gone" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/standard_double_margin"
-            android:gravity="center"
-            android:text="@string/login_no_account"
-            android:textColor="@color/login_text_hint_color" />
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/homePage"
             style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/standard_half_margin"
+            android:layout_marginTop="@dimen/standard_margin"
             android:padding="@dimen/standard_padding"
             android:text="@string/home_page"
             android:textColor="@color/primary"

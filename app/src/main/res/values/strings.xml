@@ -1656,5 +1656,4 @@
     <string name="login_fields_required">Please enter your username and password</string>
     <string name="login_wrong_credentials">Wrong username or password</string>
     <string name="login_server_unreachable">Cannot reach DataDrive. Check your connection and try again.</string>
-    <string name="login_no_account">No account yet? Sign up on our home page.</string>
 </resources>
