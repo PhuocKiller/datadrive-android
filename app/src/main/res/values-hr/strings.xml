@@ -565,7 +565,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Također otpremi postojeće datoteke</string>
     <string name="instant_upload_on_charging">Otpremanje samo tijekom punjenja</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_shares">Unutarnja dijeljenja</string>
     <string name="internal_two_way_sync">Interna dvosmjerna sinkronizacija</string>
     <string name="internal_two_way_sync_not_yet">Još ne, uskoro će se sinkronizirati</string>

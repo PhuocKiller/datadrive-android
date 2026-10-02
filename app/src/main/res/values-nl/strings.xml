@@ -576,7 +576,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Upload ook bestaande bestanden</string>
     <string name="instant_upload_on_charging">Alleen uploaden bij opladen</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Ontvangers van een gedeelde map hebben altijd toegang tot de volledige versleutelde map. Delen is alleen mogelijk met accounts waarvoor al end-to-end versleuteling is ingesteld.</string>
     <string name="internal_share_headline_end_to_end_encrypted">End-to-end versleutelde bestanden</string>
     <string name="internal_shares">Interne shares</string>

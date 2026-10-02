@@ -109,6 +109,23 @@ class FileSystemRepository(
         }
     }
 
+    suspend fun getUploadedEntities(syncedFolder: SyncedFolder): List<FilesystemEntity> =
+        dao.getBySyncedFolderId(syncedFolder.id.toString()).filter {
+            it.fileSentForUpload == 1 && it.fileIsFolder == 0 && !it.localPath.isNullOrEmpty()
+        }
+
+    fun getRemotePath(entity: FilesystemEntity, syncedFolder: SyncedFolder): String =
+        entity.remotePath ?: syncFolderHelper.getAutoUploadRemotePath(syncedFolder, File(entity.localPath!!))
+
+    suspend fun requeueFile(entity: FilesystemEntity, syncedFolder: SyncedFolder, remotePath: String) {
+        uploadsStorageManager.uploadDao.deleteByRemotePathAndAccountName(
+            remotePath = remotePath,
+            accountName = syncedFolder.account
+        )
+        dao.markFileAsPending(entity.localPath!!, syncedFolder.id.toString())
+        Log_OC.d(TAG, "missing on server, queued again: ${entity.localPath}")
+    }
+
     @JvmOverloads
     fun insertFromUri(uri: Uri, syncedFolder: SyncedFolder, checkFileType: Boolean = false) {
         val projection = arrayOf(

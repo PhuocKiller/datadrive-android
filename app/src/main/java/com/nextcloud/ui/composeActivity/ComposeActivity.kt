@@ -121,9 +121,7 @@ class ComposeActivity : DrawerActivity() {
             nextcloudClient = clientRepository.getNextcloudClient()
         }
 
-        binding.bottomNavigation.menu.findItem(R.id.nav_assistant).run {
-            isChecked = true
-        }
+        binding.bottomNavigation.menu.findItem(R.id.nav_assistant)?.isChecked = true
 
         when (currentScreen) {
             is ComposeDestination.AssistantScreen -> {

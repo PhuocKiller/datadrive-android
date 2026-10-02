@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Nahrať aj existujúce súbory</string>
     <string name="instant_upload_on_charging">Nahrať iba počas nabíjania</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Príjemcovia zdieľania majú vždy prístup k celému šifrovanému priečinku. Zdieľať je možné iba s účtami, ktoré už majú nastavené end-to-end šifrovanie.</string>
     <string name="internal_share_headline_end_to_end_encrypted">End-to-end šifrované zdieľania</string>
     <string name="internal_shares">Interné zdieľania</string>

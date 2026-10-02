@@ -417,7 +417,6 @@
     <string name="image_editor_unable_to_edit_image">No se puede editar la imagen.</string>
     <string name="instant_upload_existing">También cargar archivos existentes</string>
     <string name="instant_upload_on_charging">Cargar archivos sólo con el dispositivo conectado a la toma de corriente</string>
-    <string name="instant_upload_path">/Cargas Automáticas</string>
     <string name="invalid_url">URL no válida</string>
     <string name="invisible">Invisible</string>
     <string name="label_empty">La etiqueta no puede estar vacía</string>

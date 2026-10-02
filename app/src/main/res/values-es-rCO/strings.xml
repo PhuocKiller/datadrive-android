@@ -439,7 +439,6 @@
     <string name="hint_name">Nombre</string>
     <string name="hint_password">Contraseña</string>
     <string name="instant_upload_on_charging">Cargar archivos sólo con el dispositivo conectado a la toma de corriente</string>
-    <string name="instant_upload_path">/Cargas Automáticas</string>
     <string name="invisible">Invisible</string>
     <string name="link">Enlace</string>
     <string name="list_layout">Vista de lista</string>

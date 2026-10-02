@@ -584,7 +584,6 @@
     <string name="image_preview_unit_seconds">%s с</string>
     <string name="instant_upload_existing">Также загрузить существующие файлы</string>
     <string name="instant_upload_on_charging">Только во время зарядки</string>
-    <string name="instant_upload_path">/Автозагрузка</string>
     <string name="internal_share_description_end_to_end_encrypted">Получатели общего доступа всегда имеют доступ к полностью зашифрованной папке. Поделиться можно только с учётными записями, в которых уже настроено сквозное шифрование.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Сквозные зашифрованные общие ресурсы</string>
     <string name="internal_shares">Внутренние ссылки</string>

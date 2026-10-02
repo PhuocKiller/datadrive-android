@@ -12,6 +12,7 @@
     <string name="bottom_navigation_menu_favorites_label">Favorites</string>
     <string name="bottom_navigation_menu_assistant_label">Assistant</string>
     <string name="bottom_navigation_menu_media_label">Media</string>
+    <string name="bottom_navigation_menu_auto_upload_label">Auto upload</string>
     <string name="file_list_error_headline">Poor connection</string>
     <string name="file_list_error_description">Check your internet connection or try again later</string>
     <string name="file_list_out_of_memory_description">Could not load content</string>
@@ -588,7 +589,7 @@
     <string name="auto_upload_on_wifi">Only upload on unmetered Wi-Fi</string>
     <string name="instant_upload_on_charging">Only upload when charging</string>
     <string name="instant_upload_existing">Also upload existing files</string>
-    <string name="instant_upload_path">/InstantUpload</string>
+    <string name="instant_upload_path" translatable="false">/Sync Files</string>
     <string name="auto_upload_path">/AutoUpload</string>
 
     <string name="auto_upload_low_battery_warning_info">Low battery, upload might take longer</string>

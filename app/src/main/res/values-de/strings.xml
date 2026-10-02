@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Vorhandene Dateien ebenfalls hochladen</string>
     <string name="instant_upload_on_charging">Nur während des Ladens der Batterie hochladen</string>
-    <string name="instant_upload_path">/SofortUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Die Empfänger der Freigabe haben stets Zugriff auf den vollständigen verschlüsselten Ordner. Die Freigabe ist nur mit Konten möglich, die bereits eine Ende-zu-Ende-Verschlüsselung eingerichtet haben.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Ende-zu-Ende-verschlüsselte Freigaben</string>
     <string name="internal_shares">Interne Freigaben</string>

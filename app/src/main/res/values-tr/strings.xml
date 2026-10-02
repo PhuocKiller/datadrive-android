@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Var olan dosyalar da yüklensin</string>
     <string name="instant_upload_on_charging">Yalnızca şarj edilirken yüklensin</string>
-    <string name="instant_upload_path">/AnındaYükle</string>
     <string name="internal_share_description_end_to_end_encrypted">Paylaşım alıcıları her zaman tam şifrelenmiş klasöre erişebilir. Yalnızca uçtan uca şifrelemeyi zaten ayarlamış hesaplarla paylaşılabilir.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Uçtan uca şifrelenmiş paylaşımlar</string>
     <string name="internal_shares">İç paylaşımlar</string>

@@ -588,7 +588,6 @@
     <string name="image_preview_unit_seconds">%s sek.</string>
     <string name="instant_upload_existing">Taip pat įkelkite esamus failus</string>
     <string name="instant_upload_on_charging">Įkelti failus tik kai kraunasi</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Bendrinimo gavėjai visada turi prieigą prie viso užšifruoto aplanko. Bendrinti galima tik su paskyromis, kuriose jau nustatytas ištisinis šifravimas.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Ištisinio šifravimo nuorodos</string>
     <string name="internal_shares">Vidiniai bendrinimai</string>

@@ -543,7 +543,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Last også opp eksisterende filer</string>
     <string name="instant_upload_on_charging">Bare last opp under lading</string>
-    <string name="instant_upload_path">/Direkteopplasting</string>
     <string name="internal_share_description_end_to_end_encrypted">Mottakere av delingen har alltid tilgang til hele den krypterte mappen. Det er kun mulig å dele med kontoer som allerede har satt opp ende-til-ende-kryptering.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Ende-til-endre-krypterte delinger</string>
     <string name="internal_shares">Interne delinger</string>

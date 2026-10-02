@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s sek</string>
     <string name="instant_upload_existing">Laadi üles ka olemasolevad failid</string>
     <string name="instant_upload_on_charging">Laadi üles ainult aku laadimise ajal</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Jagatus sisu saajatel on alati täismahuline ligipääs kogu krüptitud kaustale. Jagada saad vaid sellistele kasutajakontodele, kes juba on läbiva krüptimise kasutusele võtnud.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Läbivalt krüptitud jaosmeedia</string>
     <string name="internal_shares">Sisemised jaoskaustad</string>

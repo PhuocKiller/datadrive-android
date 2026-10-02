@@ -442,7 +442,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Pošlji tudi obstoječe datoteke</string>
     <string name="instant_upload_on_charging">Usklajuj le med polnjenjem naprave</string>
-    <string name="instant_upload_path">/Hipno nalaganje</string>
     <string name="invalid_url">Neveljaven naslov URL</string>
     <string name="invisible">Drugim nevidno</string>
     <string name="label_empty">Oznaka ne sme biti prazno polje</string>

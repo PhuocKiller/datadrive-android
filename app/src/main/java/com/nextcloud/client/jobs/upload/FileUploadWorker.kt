@@ -120,6 +120,12 @@ class FileUploadWorker(
             }
         }
 
+        fun cancelUploadsInRemoteFolder(remoteFolder: String, accountName: String) {
+            activeOperations.values
+                .filter { it.remotePath.startsWith(remoteFolder) && it.user.accountName == accountName }
+                .forEach { cancelUpload(it.remotePath, accountName) }
+        }
+
         fun pauseActiveUploads() {
             activeOperations.values.forEach {
                 Log_OC.d(TAG, "upload operation is paused: ${it.remotePath}")
