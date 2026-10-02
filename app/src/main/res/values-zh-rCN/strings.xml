@@ -584,7 +584,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">同时上传现有文件</string>
     <string name="instant_upload_on_charging">仅在充电时上传</string>
-    <string name="instant_upload_path">/实时上传</string>
     <string name="internal_share_description_end_to_end_encrypted">共享对象始终可以访问完整的加密文件夹。但只能与已设置端到端加密的账号共享。</string>
     <string name="internal_share_headline_end_to_end_encrypted">端到端加密共享</string>
     <string name="internal_shares">内部共享</string>

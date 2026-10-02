@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Enviar arquivos existentes também</string>
     <string name="instant_upload_on_charging">Só enviar quando carregando</string>
-    <string name="instant_upload_path">/UploadInstantâneo</string>
     <string name="internal_share_description_end_to_end_encrypted">Os destinatários do compartilhamento sempre têm acesso à pasta criptografada na íntegra. Só é possível compartilhar com contas que já tenham configurado a criptografia de ponta-a-ponta.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Compartilhamentos criptografados de ponta-a-ponta</string>
     <string name="internal_shares">Compartilhamentos internos</string>

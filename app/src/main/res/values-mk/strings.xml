@@ -377,7 +377,6 @@
     <string name="host_your_own_server">Хостирајте го вашиот сервер</string>
     <string name="instant_upload_existing">Прикачување на постоечките датотеки</string>
     <string name="instant_upload_on_charging">Прикачувај само додека се полни</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_shares">Внатрешни споделувања</string>
     <string name="invalid_url">Неправилна URL</string>
     <string name="invisible">Невидливо</string>

@@ -86,6 +86,7 @@ class AutoUploadWorker(
     private val notificationManager = AutoUploadNotificationManager(context, viewThemeUtils, NOTIFICATION_ID)
     private val fileUploadHelper = FileUploadHelper.instance()
     private val retryPolicy = UploadDelayPolicy()
+    private val remoteDeletionDetector = AutoUploadRemoteDeletionDetector(repository)
 
     private val overridePowerSaving: Boolean
         get() = inputData.getBoolean(OVERRIDE_POWER_SAVING, false)
@@ -112,6 +113,7 @@ class AutoUploadWorker(
             // The scan has to run before the scan interval decides there is nothing to do, otherwise files added
             // since the previous run stay invisible until some other trigger happens to scan them in.
             autoUploadHelper.insertEntries(syncedFolder)
+            requeueFilesDeletedOnServer(syncedFolder)
 
             if (hasNothingToDo()) {
                 return Result.success()
@@ -236,6 +238,18 @@ class AutoUploadWorker(
         return waitingForScanInterval
     }
 
+    private suspend fun requeueFilesDeletedOnServer(syncedFolder: SyncedFolder) = withContext(Dispatchers.IO) {
+        val user = getUserOrReturn(syncedFolder) ?: return@withContext
+        val client = OwnCloudClientManagerFactory.getDefaultSingleton()
+            .getClientFor(OwnCloudAccount(user.toPlatformAccount(), context), context)
+        remoteDeletionDetector.requeueFilesMissingOnServer(syncedFolder, client)
+    }
+
+    private fun isSyncedFolderStillActive(syncedFolder: SyncedFolder): Boolean {
+        val current = syncedFolderProvider.getSyncedFolderByID(syncedFolder.id) ?: return false
+        return current.isEnabled && current.remotePath == syncedFolder.remotePath
+    }
+
     private fun getUserOrReturn(syncedFolder: SyncedFolder): User? {
         val optionalUser = userAccountManager.getUser(syncedFolder.account)
         if (!optionalUser.isPresent) {
@@ -297,6 +311,11 @@ class AutoUploadWorker(
                     return@withContext
                 }
 
+                if (!isSyncedFolderStillActive(syncedFolder)) {
+                    Log_OC.w(TAG, "synced folder removed or changed, stopping auto upload")
+                    return@withContext
+                }
+
                 delay(retryPolicy.getDelay().milliseconds)
 
                 val file = File(path)
@@ -344,6 +363,12 @@ class AutoUploadWorker(
                             FileUploadWorker.unregisterActiveUpload(operation.ocUploadId)
                         }
                         fileUploadEventBroadcaster.sendUploadStarted(operation, context)
+
+                        if (!result.isSuccess && !isSyncedFolderStillActive(syncedFolder)) {
+                            uploadsStorageManager.removeUpload(upload)
+                            Log_OC.w(TAG, "synced folder removed during upload, dropping: $localPath")
+                            return@withContext
+                        }
 
                         UploadErrorNotificationManager.handleResult(
                             context,

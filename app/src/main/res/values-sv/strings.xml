@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Ladda även upp befintliga filer</string>
     <string name="instant_upload_on_charging">Ladda enbart upp när enheten laddas</string>
-    <string name="instant_upload_path">/AutomatiskUppladdning</string>
     <string name="internal_share_description_end_to_end_encrypted">Mottagare av delningar har alltid åtkomst till hela den krypterade mappen. Det går endast att dela med konton som redan har konfigurerat ände-till-ände-kryptering.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Ände-till-ände-krypterade delningar</string>
     <string name="internal_shares">Interna delningar</string>

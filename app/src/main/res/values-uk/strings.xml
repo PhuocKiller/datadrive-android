@@ -585,7 +585,6 @@
     <string name="image_preview_unit_seconds">%s с</string>
     <string name="instant_upload_existing">Також завантажити існуючі файли</string>
     <string name="instant_upload_on_charging">Завантаження тільки під час заряджання</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Отримувачі спільних ресурсів завжди матимуть доступ до зашифрованого каталогу. Ним можна поділитися буде тільки з тими користувачами, які собі налаштували наскрізне шифрування.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Спільні ресурси з наскрізним шифруванням</string>
     <string name="internal_shares">Внутрішні спільні ресурси</string>

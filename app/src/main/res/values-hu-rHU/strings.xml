@@ -576,7 +576,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">A meglévő fájlokat is töltse fel</string>
     <string name="instant_upload_on_charging">Feltöltés csak töltés közben</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">A megosztás címzettjei mindig hozzáférhetnek a teljes titkosított mappához. A megosztás csak olyan fiókokkal lehetséges, amelyeknél már be van állítva a végpontok közti titkosítás.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Végpontok közti titkosítással rendelkező megosztások</string>
     <string name="internal_shares">Belső megosztások</string>

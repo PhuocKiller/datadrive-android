@@ -638,7 +638,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Uaslódáil comhaid atá ann cheana féin freisin</string>
     <string name="instant_upload_on_charging">Íoslódáil ach amháin nuair a mhuirearú</string>
-    <string name="instant_upload_path">/Uaslódáil Meandaracha</string>
     <string name="internal_share_description_end_to_end_encrypted">Bíonn rochtain ag faighteoirí comhroinnte i gcónaí ar an bhfillteán criptithe iomlán. Ní féidir comhroinnt ach le cuntais a bhfuil criptiú foirceann go foirceann socraithe acu cheana féin.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Scaireanna criptithe ó cheann ceann go ceann</string>
     <string name="internal_shares">Scaireanna inmheánacha</string>

@@ -53,6 +53,16 @@ interface UploadDao {
     suspend fun deleteByLocalRemotePath(localPath: String, remotePath: String)
 
     @Query(
+        """
+    DELETE FROM ${ProviderTableMeta.UPLOADS_TABLE_NAME}
+    WHERE ${ProviderTableMeta.UPLOADS_ACCOUNT_NAME} = :accountName
+      AND substr(${ProviderTableMeta.UPLOADS_REMOTE_PATH}, 1, length(:remoteFolder)) = :remoteFolder
+      AND ${ProviderTableMeta.UPLOADS_STATUS} != :succeededStatus
+"""
+    )
+    suspend fun deleteUnfinishedInRemoteFolder(accountName: String, remoteFolder: String, succeededStatus: Int)
+
+    @Query(
         "SELECT * FROM " + ProviderTableMeta.UPLOADS_TABLE_NAME +
             " WHERE " + ProviderTableMeta._ID + " = :id AND " +
             ProviderTableMeta.UPLOADS_ACCOUNT_NAME + " = :accountName " +

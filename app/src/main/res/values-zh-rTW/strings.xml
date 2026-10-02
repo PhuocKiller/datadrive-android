@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s 秒</string>
     <string name="instant_upload_existing">也同時上傳既有的檔案</string>
     <string name="instant_upload_on_charging">只在充電時上傳</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">分享對象總是能存取完整的加密資料夾。僅能與已設定端到端加密的帳號進行分享。</string>
     <string name="internal_share_headline_end_to_end_encrypted">端到端加密分享</string>
     <string name="internal_shares">內部分享</string>

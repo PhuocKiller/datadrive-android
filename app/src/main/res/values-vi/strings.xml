@@ -81,6 +81,7 @@
     <string name="bottom_navigation_menu_favorites_label">Ưa thích</string>
     <string name="bottom_navigation_menu_files_label">Tất cả tệp tin</string>
     <string name="bottom_navigation_menu_media_label">Phương tiện</string>
+    <string name="bottom_navigation_menu_auto_upload_label">Tự tải lên</string>
     <string name="busy">Bận</string>
     <string name="calendar">Lịch</string>
     <string name="calendars">Lịch</string>
@@ -390,7 +391,6 @@
     <string name="host_your_own_server">Host máy chủ của riêng bạn</string>
     <string name="instant_upload_existing">Cũng tải lên các tệp hiện có</string>
     <string name="instant_upload_on_charging">Chỉ tải lên khi đang sạc pin</string>
-    <string name="instant_upload_path">/Upload tức thì</string>
     <string name="invalid_url">URL không hợp lệ</string>
     <string name="invisible">Vô hình</string>
     <string name="label_empty">Nhãn không thể trống</string>

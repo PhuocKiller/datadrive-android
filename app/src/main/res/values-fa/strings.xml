@@ -575,7 +575,6 @@
     <string name="image_preview_unit_seconds">%s ثانیه</string>
     <string name="instant_upload_existing">فایل‌های موجود را نیز بارگذاری کنید</string>
     <string name="instant_upload_on_charging">فقط هنگامی که گوشی در حال شارژ است، آپلود کن</string>
-    <string name="instant_upload_path">آپلود فوری</string>
     <string name="internal_share_description_end_to_end_encrypted">گیرندگان اشتراک‌گذاری همواره به پوشه رمزگذاری‌شده کامل دسترسی دارند. اشتراک‌گذاری تنها با حساب‌هایی امکان‌پذیر است که رمزگذاری سرتاسری را تنظیم کرده‌اند.</string>
     <string name="internal_share_headline_end_to_end_encrypted">اشتراک‌های رمزنگاری‌شدهٔ سرتاسری</string>
     <string name="internal_shares">اشتراک داخلی</string>

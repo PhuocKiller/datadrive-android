@@ -63,6 +63,14 @@ interface FileSystemDao {
 
     @Query(
         """
+        DELETE FROM ${ProviderMeta.ProviderTableMeta.FILESYSTEM_TABLE_NAME}
+        WHERE ${ProviderMeta.ProviderTableMeta.FILESYSTEM_SYNCED_FOLDER_ID} = :syncedFolderId
+        """
+    )
+    suspend fun deleteBySyncedFolderId(syncedFolderId: String)
+
+    @Query(
+        """
         SELECT *
         FROM ${ProviderMeta.ProviderTableMeta.FILESYSTEM_TABLE_NAME}
         WHERE ${ProviderMeta.ProviderTableMeta.FILESYSTEM_SYNCED_FOLDER_ID} = :syncedFolderId
@@ -84,6 +92,16 @@ interface FileSystemDao {
     """
     )
     suspend fun markFileAsUploaded(localPath: String, syncedFolderId: String)
+
+    @Query(
+        """
+        UPDATE ${ProviderMeta.ProviderTableMeta.FILESYSTEM_TABLE_NAME}
+        SET ${ProviderMeta.ProviderTableMeta.FILESYSTEM_FILE_SENT_FOR_UPLOAD} = 0
+        WHERE ${ProviderMeta.ProviderTableMeta.FILESYSTEM_FILE_LOCAL_PATH} = :localPath
+          AND ${ProviderMeta.ProviderTableMeta.FILESYSTEM_SYNCED_FOLDER_ID} = :syncedFolderId
+    """
+    )
+    suspend fun markFileAsPending(localPath: String, syncedFolderId: String)
 
     @Query(
         """

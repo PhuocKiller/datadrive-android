@@ -330,7 +330,6 @@
     <string name="host_your_own_server">Òstaich am frithealaiche agad fhèin</string>
     <string name="instant_upload_existing">Luchdaich suas na faidhlichean a tha ann mu thràth cuideachd</string>
     <string name="instant_upload_on_charging">Na luchdaich suas ach nuair a bhios an t-uidheam ’ga theàirrdseadh</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="invalid_url">URL mì-dhligheach</string>
     <string name="invisible">Do-fhaicsinneach</string>
     <string name="label_empty">Chan fhaod an leubail a bhith bàn</string>

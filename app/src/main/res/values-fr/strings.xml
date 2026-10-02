@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Téléverser aussi les fichiers existants</string>
     <string name="instant_upload_on_charging">Téléverser uniquement lors de la recharge</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Les destinataires du partage ont toujours accès à l\'intégralité du dossier chiffré. Le partage est uniquement possible pour les comptes ayant déjà configuré le chiffrement de bout en bout.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Partages chiffrés de bout en bout</string>
     <string name="internal_shares">Partages internes</string>

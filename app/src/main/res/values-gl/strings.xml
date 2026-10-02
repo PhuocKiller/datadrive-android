@@ -574,7 +574,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Envíar tamén os ficheiros existentes</string>
     <string name="instant_upload_on_charging">Enviar só cando estea cargando</string>
-    <string name="instant_upload_path">/EnvíoInstantáneo</string>
     <string name="internal_share_description_end_to_end_encrypted">Os destinatarios do recurso compartido sempre teñen acceso á carpeta cifrada completa. Só é posible compartir con contas que xa teñan configurado o cifrado de extremo a extremo.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Comparticións cifradas de extremo a extremo</string>
     <string name="internal_shares">Comparticións internas</string>

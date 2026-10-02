@@ -20,12 +20,6 @@
         android:title="@string/bottom_navigation_menu_favorites_label"/>
 
     <item
-        android:id="@+id/nav_assistant"
-        android:enabled="true"
-        android:icon="@drawable/selector_assistant"
-        android:title="@string/bottom_navigation_menu_assistant_label"/>
-
-    <item
         android:id="@+id/nav_gallery"
         android:enabled="true"
         android:icon="@drawable/selector_media"
@@ -36,5 +30,11 @@
         android:enabled="true"
         android:icon="@drawable/ic_album"
         android:title="@string/drawer_item_album"/>
+
+    <item
+        android:id="@+id/nav_auto_upload"
+        android:enabled="true"
+        android:icon="@drawable/nav_synced_folders"
+        android:title="@string/bottom_navigation_menu_auto_upload_label"/>
 
 </menu>

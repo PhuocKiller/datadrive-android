@@ -638,7 +638,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Senda líka inn fyrirliggjandi skrár</string>
     <string name="instant_upload_on_charging">Einungis senda inn þegar verið er að hlaða</string>
-    <string name="instant_upload_path">/BeinInnsending</string>
     <string name="internal_share_description_end_to_end_encrypted">Viðtakendur sameigna eru alltaf með aðgang að allri dulrituðu möppunni. Henni er aðeins hægt að deila með aðgöngum sem þegar hafa sett upp enda-í-enda dulritun.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Enda-í-enda dulritaðar sameignir</string>
     <string name="internal_shares">Innri sameignir</string>

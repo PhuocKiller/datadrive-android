@@ -637,7 +637,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Also upload existing files</string>
     <string name="instant_upload_on_charging">Only upload when charging</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Share recipients always have access to the full encrypted folder. It is only possible to share with accounts that have already setup end-to-end encryption.</string>
     <string name="internal_share_headline_end_to_end_encrypted">End-to-end encrypted shares</string>
     <string name="internal_shares">Internal shares</string>

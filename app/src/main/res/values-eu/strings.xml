@@ -511,7 +511,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Existitzen diren fitxategiak ere igo</string>
     <string name="instant_upload_on_charging">Igo bakarrik gailua kargatzean</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_shares">Barneko partekatzeak</string>
     <string name="internal_two_way_sync">Barneko bi norabideko sinkronizazioa</string>
     <string name="internal_two_way_sync_not_yet">Oraindik ez, laster sinkronizatuko da</string>

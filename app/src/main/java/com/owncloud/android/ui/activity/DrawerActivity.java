@@ -280,7 +280,6 @@ public abstract class DrawerActivity extends ToolbarActivity
 
         if (bottomNavigationView != null) {
             themeBottomNavigationMenu();
-            checkAssistantBottomNavigationMenu();
             handleBottomNavigationViewClicks();
             highlightNavigationViewItem(id);
         }
@@ -314,20 +313,6 @@ public abstract class DrawerActivity extends ToolbarActivity
 
     private void themeBottomNavigationMenu() {
         viewThemeUtils.platform.colorBottomNavigationView(bottomNavigationView);
-    }
-
-    @SuppressFBWarnings("RV")
-    private void checkAssistantBottomNavigationMenu() {
-        final var optionalCapabilities = getCapabilities();
-        boolean isAssistantAvailable = false;
-        if (optionalCapabilities.isPresent()) {
-            isAssistantAvailable = optionalCapabilities.get().getAssistant().isTrue();
-        }
-
-        bottomNavigationView
-            .getMenu()
-            .findItem(R.id.nav_assistant)
-            .setVisible(isAssistantAvailable);
     }
 
     private void openFavoritesTab() {
@@ -688,6 +673,12 @@ public abstract class DrawerActivity extends ToolbarActivity
     private void handleBottomNavigationViewClicks() {
         bottomNavigationView.setOnItemSelectedListener(menuItem -> {
             int menuItemId = menuItem.getItemId();
+
+            if (menuItemId == R.id.nav_auto_upload) {
+                startActivity(new Intent(this, SyncedFoldersActivity.class));
+                return false;
+            }
+
             exitSelectionMode();
             resetOnlyPersonalAndOnDevice();
 
@@ -696,8 +687,6 @@ public abstract class DrawerActivity extends ToolbarActivity
                 EventBus.getDefault().post(new ChangeMenuEvent());
             } else if (menuItemId == R.id.nav_favorites) {
                 openFavoritesTab();
-            } else if (menuItemId == R.id.nav_assistant && !(this instanceof ComposeActivity)) {
-                startAssistantScreen();
             } else if (menuItemId == R.id.nav_gallery) {
                 openMediaTab(menuItem.getItemId());
             } else if (menuItemId == R.id.nav_album) {

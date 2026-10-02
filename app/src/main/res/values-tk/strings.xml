@@ -329,7 +329,6 @@
     <string name="host_your_own_server">Öz serweriňizi ýerleşdiriň</string>
     <string name="instant_upload_existing">Bar bolan faýllary hem ýükläň</string>
     <string name="instant_upload_on_charging">Diňe zarýad berlende ýükläň</string>
-    <string name="instant_upload_path">/ Çaltýüklemek</string>
     <string name="invalid_url">Nädogry URL</string>
     <string name="invisible">göze görünmeýän</string>
     <string name="label_empty">Bellik boş bolup bilmez</string>

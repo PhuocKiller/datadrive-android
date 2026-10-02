@@ -574,7 +574,6 @@
     <string name="image_preview_unit_seconds">%s s</string>
     <string name="instant_upload_existing">Wyślij również istniejące pliki</string>
     <string name="instant_upload_on_charging">Wysyłaj tylko podczas ładowania</string>
-    <string name="instant_upload_path">/InstantUpload</string>
     <string name="internal_share_description_end_to_end_encrypted">Odbiorcy udostępnienia zawsze mają dostęp do całego zaszyfrowanego folderu. Udostępnianie jest możliwe tylko kontom, które mają już skonfigurowane szyfrowanie end-to-end.</string>
     <string name="internal_share_headline_end_to_end_encrypted">Udostępnienia szyfrowane end-to-end</string>
     <string name="internal_shares">Udostępnianie wewnętrzne</string>

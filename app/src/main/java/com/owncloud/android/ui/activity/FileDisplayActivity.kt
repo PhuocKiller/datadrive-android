@@ -64,6 +64,7 @@ import com.nextcloud.client.database.entity.SyncedFolderEntity
 import com.nextcloud.client.di.Injectable
 import com.nextcloud.client.editimage.EditImageActivity
 import com.nextcloud.client.files.DeepLinkHandler
+import com.nextcloud.client.jobs.autoUpload.AutoUploadForegroundRescan
 import com.nextcloud.client.jobs.download.FileDownloadEventBroadcaster
 import com.nextcloud.client.jobs.download.FileDownloadHelper
 import com.nextcloud.client.jobs.download.FileDownloadWorker
@@ -296,6 +297,7 @@ class FileDisplayActivity :
         lastDisplayedAccountName = preferences.lastDisplayedAccountName
         albumOperationListener = AlbumOperationListener(this)
         folderRefreshScheduler = FolderRefreshScheduler(this)
+        lifecycle.addObserver(AutoUploadForegroundRescan(syncedFolderProvider, backgroundJobManager))
 
         intent?.let {
             handleCommonIntents(it)
@@ -2310,8 +2312,8 @@ class FileDisplayActivity :
                 lifecycleScope.launch(Dispatchers.IO) {
                     entities.forEach { entity ->
                         entity.id?.toLong()?.let {
-                            fileUploadHelper.removeEntityFromUploadEntities(it)
                             syncedFolderProvider.deleteSyncedFolder(it)
+                            fileUploadHelper.removeDeletedAutoUploadFolder(entity)
                         }
                     }
 

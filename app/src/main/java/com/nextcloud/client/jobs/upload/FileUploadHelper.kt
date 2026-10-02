@@ -667,6 +667,29 @@ class FileUploadHelper {
     }
 
     /**
+     * Rows of an interrupted auto upload are retried by [retryFailedUploads], which would create the deleted
+     * remote folder again.
+     */
+    suspend fun removeDeletedAutoUploadFolder(entity: SyncedFolderEntity) {
+        val id = entity.id?.toLong() ?: return
+        removeEntityFromUploadEntities(id)
+
+        val remotePath = entity.remotePath
+        val accountName = entity.account
+        if (!remotePath.isNullOrEmpty() && !accountName.isNullOrEmpty()) {
+            val remoteFolder = remotePath.trimEnd('/') + "/"
+            FileUploadWorker.cancelUploadsInRemoteFolder(remoteFolder, accountName)
+            uploadsStorageManager.uploadDao.deleteUnfinishedInRemoteFolder(
+                accountName = accountName,
+                remoteFolder = remoteFolder,
+                succeededStatus = UploadStatus.UPLOAD_SUCCEEDED.value
+            )
+        }
+
+        uploadsStorageManager.fileSystemDao.deleteBySyncedFolderId(id.toString())
+    }
+
+    /**
      * Splits a list of files into:
      * 1. Files that have an auto-upload folder configured.
      * 2. Files that don't.
